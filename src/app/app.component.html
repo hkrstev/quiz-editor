@@ -6,13 +6,11 @@
             </button>
 
             <div class="card mt-3">
-                <div class="card-header">
-                    Quizzes
+                <div class="list-group list-group-flush">
+                    <button class="list-group-item list-group-item-action" *ngFor="let q of quizzes">
+                        {{ q.quizName }}
+                    </button>
                 </div>
-                <div class="card-body">
-                    Coming soon
-                </div>
-
             </div>
         </div>
         <div class="col-md-8 mt-3">
