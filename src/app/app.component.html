@@ -7,7 +7,10 @@
 
             <div class="card mt-3">
                 <div class="list-group list-group-flush">
-                    <button class="list-group-item list-group-item-action" *ngFor="let q of quizzes">
+                    <button class="list-group-item list-group-item-action" 
+                    *ngFor="let q of quizzes"
+                    [class.active]="q === selectedQuiz"
+                    (click)="selectQuiz(q)">
                         {{ q.quizName }}
                     </button>
                 </div>
