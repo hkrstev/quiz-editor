@@ -1,7 +1,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <button class="btn btn-outline-success mt-3">
+            <button class="btn btn-outline-success mt-3"
+            (click)="addNewQuiz()">
                 Add New Quiz
             </button>
 
@@ -24,9 +25,17 @@
             </div>
            
             <div class="card mt-3">
-                <div class="card-header">General</div>
-                <div class="card-body">{{ selectedQuiz.quizName}}</div>
-           </div>
+                <div class="card-header">
+                  General
+                </div>
+                <div class="card-body">
+                  <input 
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="selectedQuiz.quizName"
+                  />
+                </div>
+              </div>
            
            <div class="card mt-3">
                 <div class="card-header">Questions</div>
