@@ -16,7 +16,7 @@ export class QuizService {
                     name:'Question 1',
                 }, 
                 {
-                    name:'Question 1',
+                    name:'Question 2',
                 }
             ]
         }, 
