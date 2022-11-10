@@ -5,6 +5,7 @@ import { QuizService } from './quiz.service';
 interface QuizDisplay {
     quizName: string;
     quizQuestions: QuestionDisplay[];
+    markedForDelete: boolean;
 }
 
 interface QuestionDisplay {
@@ -17,6 +18,9 @@ interface QuestionDisplay {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+    title(title: any) {
+        throw new Error('Method not implemented.');
+    }
     
     constructor(private quizSvc: QuizService) {}
 
@@ -29,6 +33,7 @@ export class AppComponent implements OnInit {
             quizQuestions: x.questions.map((y:any) => ({
                 questionText: y.name
             }))
+            , markedForDelete: false
         }));
         }
 
@@ -43,7 +48,8 @@ export class AppComponent implements OnInit {
     addNewQuiz = () => {
         const newQuiz: QuizDisplay = {
             quizName: 'Untitled Quiz',
-            quizQuestions: []
+            quizQuestions: [],
+            markedForDelete: false
         };
         
         this.quizzes = [...this.quizzes, newQuiz];
