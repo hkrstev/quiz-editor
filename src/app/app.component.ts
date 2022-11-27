@@ -22,11 +22,14 @@ export class AppComponent implements OnInit {
     constructor(private quizSvc: QuizService) {}
 
     errorLoadingQuizzes = false;
+    loading = true;
       
 
     loadQuizzesFromCloud = async () => {
 
-        try {  
+        try {
+            this.loading = true;
+            const quizzesFromWeb = await this.quizSvc.loadQuizzes();
             const quizzes = await this.quizSvc.loadQuizzes() ?? [];    
         console.log(quizzes);
         this.quizzes = quizzes.map(x => ({
@@ -40,8 +43,10 @@ export class AppComponent implements OnInit {
         } catch (err) {
             console.error(err);
             this.errorLoadingQuizzes = true;
-    };
+    } finally {
+        this.loading = false;
     }
+    };
  
     ngOnInit () {
 
