@@ -7,6 +7,7 @@ interface QuizDisplay {
     quizQuestions: QuestionDisplay[];
     markedForDelete: boolean;
     newlyAdded: boolean;
+    naiveChecksum?: string;
 }
 
 interface QuestionDisplay {
@@ -40,6 +41,10 @@ export class AppComponent implements OnInit {
         }))
         , markedForDelete: false
         , newlyAdded: false
+    }));
+
+    this.quizzes = this.quizzes.map(x => ({
+        ...x, naiveChecksum: this.generateNaiveChecksum(x)
     }))
 
         } catch (err) {
@@ -160,6 +165,14 @@ export class AppComponent implements OnInit {
         return this.getAddedQuizzes().length;
     }
 
-
-        
+    generateNaiveChecksum = (q: QuizDisplay) => {
+        return q.quizName + "~" + q.quizQuestions.map(x => x.questionText).join("~");
     };
+
+    getEditedQuizzes = () => this.quizzes.filter(x => !x.newlyAdded && !x.markedForDelete && this.generateNaiveChecksum(x) != x.naiveChecksum);
+
+    get editedQuizCount() {
+        return this.getEditedQuizzes().length;
+    }
+
+};
