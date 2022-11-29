@@ -55,7 +55,7 @@
             *ngIf="selectedQuiz !== undefined">
             <div class="d-flex align-items-center mt-3">
                 <button class="btn btn-outline-dark "> Save </button>
-                <button class="btn btn-link">Cancel</button>
+                <button class="btn btn-link" (click)="cancelAllChanges()">Cancel All Changes</button>
             </div>
            
             <div class="card mt-3">
