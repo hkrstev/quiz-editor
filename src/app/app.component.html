@@ -55,7 +55,8 @@
             *ngIf="selectedQuiz !== undefined">
             <div class="d-flex align-items-center mt-3">
                 <button class="btn" [class.btn-outline-dark]="deletedQuizCount + editedQuizCount + addedQuizCount == 0"
-                [class.btn-dark]="deletedQuizCount + editedQuizCount + addedQuizCount > 0"> Save <span class="badge bg-danger ms-1" *ngIf="deletedQuizCount > 0"> - {{ deletedQuizCount }} </span>
+                [class.btn-dark]="deletedQuizCount + editedQuizCount + addedQuizCount > 0"
+                (click) = "saveQuizzes()"> Save <span class="badge bg-danger ms-1" *ngIf="deletedQuizCount > 0"> - {{ deletedQuizCount }} </span>
                     <span class="badge bg-success ms-1" *ngIf="addedQuizCount > 0"> + {{ addedQuizCount }} </span>
                     <span class="badge bg-secondary ms-1" *ngIf="editedQuizCount > 0"> ~ {{ editedQuizCount }} </span></button>
                 <button class="btn btn-link" (click)="cancelAllChanges()">Cancel All Changes</button>
