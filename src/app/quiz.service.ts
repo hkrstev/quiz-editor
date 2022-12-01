@@ -3,11 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { repeat, lastValueFrom } from 'rxjs';
 
 interface QuizFromWeb {
-  name: string;
-  questions: {
     name: string;
-  }[];
-}
+    questions: {
+      name: string;
+    }[];
+  }
 
 export interface ShapeForSavingEditedQuizzes {
   quiz: string;
@@ -29,33 +29,23 @@ export class QuizService {
   ) { }
 
   loadQuizzes = () => {
-
-    const quizzesFromWeb = this.angularHttpSvc.get<QuizFromWeb[]>(
-      "https://modern-js.azurewebsites.net/api/HttpTriggerJS1?code=8XD3vN3ehHLdZacBQJQhgUnNst9202gdd5VM3kWCytDkz2nXhia6kA==&name=Mystery%20Quiz"
+    const quizzesFromWeb = lastValueFrom (
+        this.angularHttpSvc.get<QuizFromWeb[]>(
+        "https://modern-js.azurewebsites.net/api/HttpTriggerJS1?code=8XD3vN3ehHLdZacBQJQhgUnNst9202gdd5VM3kWCytDkz2nXhia6kA==&name=Mystery%20Quiz"
+    )
     );
-
-    return lastValueFrom(
-      quizzesFromWeb.pipe(repeat(1))
-    );
+    return quizzesFromWeb;
   };
 
-  getMagicNumber = (callerWantsToSucceed: boolean): Promise<number> => {
+  getMagicNumber = (callerWantsToSucceed:boolean): Promise<number> => {
     return new Promise<number>(
-      (resolve, reject) => {
-
-        //
-        // Some fancy long running code here...
-        //
-
-        // Ultimately resolve if successful.
-        if (callerWantsToSucceed) {
-          resolve(42);
+        (resolve, reject) => {
+            if (callerWantsToSucceed) {
+                resolve(42);
+            } else {
+                reject("Error!");
+            }
         }
-        // Or reject if failure.
-        else {
-          reject("Promise was rejected ! ! !");
-        }
-      }
     );
   };  
 
