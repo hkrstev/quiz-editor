@@ -52,7 +52,10 @@
         </div>
     
         <div class="col-md-8"
-            *ngIf="selectedQuiz !== undefined">
+            *ngIf="selectedQuiz !== undefined"
+            [@detailsFromLeft]="detailsAnimationState"
+            (@detailsFromLeft.done)="detailsAnimationDone()"
+            >
             <div class="d-flex align-items-center mt-3">
                 <button class="btn" [class.btn-outline-dark]="deletedQuizCount + editedQuizCount + addedQuizCount == 0"
                 [class.btn-dark]="deletedQuizCount + editedQuizCount + addedQuizCount > 0"
