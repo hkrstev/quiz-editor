@@ -56,7 +56,9 @@
             [@detailsFromLeft]="detailsAnimationState"
             (@detailsFromLeft.done)="detailsAnimationDone()"
             >
-            <div class="d-flex align-items-center mt-3">
+            <div class="d-flex align-items-center mt-3"
+            [@pulseSaveCancelButtons]="deletedQuizCount + editedQuizCount + addedQuizCount > 0 ? 'somethingToSave' : 'nothingToSave'"
+            >
                 <button class="btn" [class.btn-outline-dark]="deletedQuizCount + editedQuizCount + addedQuizCount == 0"
                 [class.btn-dark]="deletedQuizCount + editedQuizCount + addedQuizCount > 0"
                 (click) = "saveQuizzes()"> Save <span class="badge bg-danger ms-1" *ngIf="deletedQuizCount > 0"> - {{ deletedQuizCount }} </span>
